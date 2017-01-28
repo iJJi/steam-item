@@ -5,7 +5,8 @@ const Util = require('./src/lib/util.js');
 
 const ITEM_PROPS = [
     'id', 'appid', 'contextid', 'amount', 'name',
-    'type', 'tradeable', 'classid', 'icon_url', 'market_hash_name'
+    'type', 'tradeable', 'classid', 'icon_url', 'market_hash_name',
+    'original_id'
 ];
 
 function itemProps(item) {
