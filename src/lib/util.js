@@ -59,18 +59,6 @@ const Util = {
     parseFloat: n => (typeof n == 'string') ? parseFloat(n) : n,
 
     /**
-     * Produce base64 random string
-     * @param numChars number of random characters
-     * @returns {string} random string of length numChars
-     */
-    randomChars: numChars => {
-        const Crypto = require('crypto');
-        const Base64url = require('base64url');
-
-        return Base64url.encode(Crypto.randomBytes(Math.ceil(numChars * 6 / 8))).substring(0, numChars)
-    },
-
-    /**
      * Parse query string and return map
      * @param url Steam Trade URL
      * @returns query parameters, such as {partner: 'xxxx', token: 'yyyy'}
