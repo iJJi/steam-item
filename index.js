@@ -64,6 +64,10 @@ module.exports = {
 
     properties: itemProps,
 
+    fungible: function (item) {
+        return item.name == (item.market_hash_name || item.market_name);
+    },
+
     hash: function (item) {
         const sha256 = Sha('sha256');
 

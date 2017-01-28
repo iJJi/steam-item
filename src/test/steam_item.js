@@ -108,6 +108,10 @@ describe("Steam Item", function() {
         expect(SteamItem.hash(ITEM)).to.equal('1|730|Chroma 3 Case|ffb03e0da64dafb8e02dc3baf7478a1ef80421591caa61f22494517d376a9493');
     });
 
+    it("Fungible", function() {
+        expect(SteamItem.fungible(ITEM)).to.be.true;
+    });
+
     it("Listing", function() {
         expect(SteamItem.listing(ITEM)).to.deep.equal({
             name: "Chroma 3 Case",
