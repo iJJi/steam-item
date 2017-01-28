@@ -89,7 +89,21 @@ const ITEM = {
 };
 
 describe("Steam Item", function() {
-    it("Item Hash", function() {
+    it("Properties", function() {
+        expect(SteamItem.properties(ITEM)).to.deep.equal({
+            id: "8795563285",
+            appid: "730",
+            classid: "1690096482",
+            contextid: "2",
+            amount: 1,
+            name: "Chroma 3 Case",
+            market_hash_name: "Chroma 3 Case",
+            type: "Base Grade Container",
+            icon_url: "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFYynaSdJGhE74y0wNWIw_OlNuvXkDpSuZQmi--SrN-h3gey-Uo6YWmlIoCLMlhplhFFvwI"
+        });
+    });
+
+    it("Hash", function() {
         expect(SteamItem.hash(ITEM)).to.equal('730|Chroma 3 Case|ffb03e0da64dafb8e02dc3baf7478a1ef80421591caa61f22494517d376a9493');
     });
 

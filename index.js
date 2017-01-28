@@ -8,9 +8,13 @@ const ITEM_PROPS = [
     'type', 'tradeable', 'classid', 'icon_url', 'market_hash_name'
 ];
 
+function itemProps(item) {
+    return Util.copyProps(item, ITEM_PROPS);
+}
+
 module.exports = {
     listing: function (item, steamProperties = null) {
-        steamProperties = Object.assign(steamProperties || {}, Util.copyProps(item, ITEM_PROPS));
+        steamProperties = Object.assign(steamProperties || {}, itemProps(item));
 
         // Description
         let description = [];
@@ -56,6 +60,8 @@ module.exports = {
             steam_properties: steamProperties
         };
     },
+
+    properties: itemProps,
 
     hash: function (item) {
         const sha256 = Sha('sha256');
