@@ -5,7 +5,7 @@ const Util = require('./src/lib/util.js');
 
 const ITEM_PROPS = [
     'id', 'appid', 'contextid', 'amount', 'name',
-    'type', 'tradeable', 'classid', 'icon_url', 'market_hash_name',
+    'type', 'tradable', 'classid', 'icon_url', 'market_hash_name',
     'original_id'
 ];
 
@@ -75,6 +75,6 @@ module.exports = {
             sha256.update(`|${t.category_name || t.category}: ${t.internal_name || t.name}`);
         }
 
-        return `${item.appid}|${item.market_hash_name || item.market_name || item.name}|${sha256.digest('hex')}`;
+        return `1|${item.appid}|${item.market_hash_name || item.market_name || item.name}|${sha256.digest('hex')}`;
     }
 };

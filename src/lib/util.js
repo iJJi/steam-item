@@ -189,7 +189,7 @@ const Util = {
             let k = keys[i];
             let v = map[k];
             if (Util.notEmpty(v)) {
-                result[k] = (k === 'amount') ? v : String(v);
+                result[k] = (k === 'amount' || k === 'tradable') ? v : String(v);
             }
         }
         return result;
