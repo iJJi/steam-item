@@ -10,7 +10,20 @@ const ITEM_PROPS = [
 ];
 
 function itemProps(item) {
-    return Util.copyProps(item, ITEM_PROPS);
+  let props = Util.copyProps(item, ITEM_PROPS);
+  
+  // Find inspect_url
+  if (item.actions && item.actions.length > 0) {
+    for (let i=0; i < item.actions.length; i++) {
+      let action = item.actions[i];
+      if (action.name && action.name.indexOf('Inspect') == 0) {
+        props.inspect_url = action.link;    
+        break ;
+      }
+    }
+  }
+  
+  return props;
 }
 
 module.exports = {
