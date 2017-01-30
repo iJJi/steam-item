@@ -96,6 +96,7 @@ describe("Steam Item", function() {
     it("Properties", function() {
         expect(SteamItem.properties(ITEM)).to.deep.equal({
             id: "8795563285",
+            owner_steamid: "76561198277655553",
             appid: "730",
             classid: "1690096482",
             contextid: "2",
@@ -123,6 +124,7 @@ describe("Steam Item", function() {
             description: "Container Series #141\n\nContains one of the following:\n\nDual Berettas | Ventilators\n\nG3SG1 | Orange Crash\n\nor an Exceedingly Rare Special Item!\n\nType: Container, Collection: The Chroma 3 Collection, Category: Normal, Quality: Base Grade",
             steam_properties: {
                 id: "8795563285",
+                owner_steamid: "76561198277655553",
                 appid: "730",
                 classid: "1690096482",
                 contextid: "2",
