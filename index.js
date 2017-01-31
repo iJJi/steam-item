@@ -9,11 +9,26 @@ const ITEM_PROPS = [
     'original_id'
 ];
 
+function itemHash(item) {
+    const sha256 = Sha('sha256');
+
+    if (item.type) {
+        sha256.update(item.type);
+    }
+
+    for (let t in item.tags) {
+        sha256.update(`|${t.category_name || t.category}: ${t.internal_name || t.name}`);
+    }
+
+    return `1|${item.appid}|${item.market_hash_name || item.market_name || item.name}|${sha256.digest('hex')}`;
+}
+
 function itemProps(item) {
     let props = Util.copyProps(item, ITEM_PROPS);
 
     // Owner Steam ID
     props.owner_steamid = item.owner;
+    props.hash = itemHash(item);
 
     // Icon URL, larger one is preferred
     props.icon_url = item.icon_url_large || item.icon_url;
@@ -87,17 +102,5 @@ module.exports = {
         return item.name == (item.market_hash_name || item.market_name);
     },
 
-    hash: function (item) {
-        const sha256 = Sha('sha256');
-
-        if (item.type) {
-            sha256.update(item.type);
-        }
-
-        for (let t in item.tags) {
-            sha256.update(`|${t.category_name || t.category}: ${t.internal_name || t.name}`);
-        }
-
-        return `1|${item.appid}|${item.market_hash_name || item.market_name || item.name}|${sha256.digest('hex')}`;
-    }
+    hash: itemHash
 };

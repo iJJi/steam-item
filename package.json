@@ -1,6 +1,6 @@
 {
   "name": "steam-item",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": true,
   "scripts": {
     "test": "ENVIRONMENT=mocha mocha src/test --recursive"

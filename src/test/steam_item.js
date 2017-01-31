@@ -108,6 +108,7 @@ describe("Steam Item", function() {
             tradable: 1,
             icon_url: "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXQ9QVcJY8gulReQ0DFSua4xJ2DAgs7KRFav4WpKhVn1r2aJGQX7ou0kdjbz6L1ZL-ClTsG6sEpjLvE8Y2i21Lm_kdpZG-lJ4KUbEZgNkYNvyBp",
             inspect_url: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175",
+            hash: "1|730|Chroma 3 Case|ffb03e0da64dafb8e02dc3baf7478a1ef80421591caa61f22494517d376a9493"
         });
     });
 
@@ -136,6 +137,7 @@ describe("Steam Item", function() {
                 tradable: 1,
                 icon_url: "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXQ9QVcJY8gulReQ0DFSua4xJ2DAgs7KRFav4WpKhVn1r2aJGQX7ou0kdjbz6L1ZL-ClTsG6sEpjLvE8Y2i21Lm_kdpZG-lJ4KUbEZgNkYNvyBp",
                 inspect_url: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175",
+                hash: "1|730|Chroma 3 Case|ffb03e0da64dafb8e02dc3baf7478a1ef80421591caa61f22494517d376a9493"
             }
         });
     });
