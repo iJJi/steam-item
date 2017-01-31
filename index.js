@@ -12,8 +12,12 @@ const ITEM_PROPS = [
 function itemProps(item) {
     let props = Util.copyProps(item, ITEM_PROPS);
 
+    // Owner Steam ID
     props.owner_steamid = item.owner;
 
+    // Icon URL, larger one is preferred
+    props.icon_url = item.icon_url_large || item.icon_url;
+    
     // Find inspect_url
     if (item.actions && item.actions.length > 0) {
         for (let i = 0; i < item.actions.length; i++) {

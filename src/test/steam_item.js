@@ -12,6 +12,7 @@ const ITEM = {
     classid: "1690096482",
     instanceid: "0",
     icon_url: "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFYynaSdJGhE74y0wNWIw_OlNuvXkDpSuZQmi--SrN-h3gey-Uo6YWmlIoCLMlhplhFFvwI",
+    icon_url_large: "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXQ9QVcJY8gulReQ0DFSua4xJ2DAgs7KRFav4WpKhVn1r2aJGQX7ou0kdjbz6L1ZL-ClTsG6sEpjLvE8Y2i21Lm_kdpZG-lJ4KUbEZgNkYNvyBp",
     icon_drag_url: "",
     name: "Chroma 3 Case",
     market_hash_name: "Chroma 3 Case",
@@ -105,7 +106,7 @@ describe("Steam Item", function() {
             market_hash_name: "Chroma 3 Case",
             type: "Base Grade Container",
             tradable: 1,
-            icon_url: "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFYynaSdJGhE74y0wNWIw_OlNuvXkDpSuZQmi--SrN-h3gey-Uo6YWmlIoCLMlhplhFFvwI",
+            icon_url: "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXQ9QVcJY8gulReQ0DFSua4xJ2DAgs7KRFav4WpKhVn1r2aJGQX7ou0kdjbz6L1ZL-ClTsG6sEpjLvE8Y2i21Lm_kdpZG-lJ4KUbEZgNkYNvyBp",
             inspect_url: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175",
         });
     });
@@ -133,7 +134,7 @@ describe("Steam Item", function() {
                 market_hash_name: "Chroma 3 Case",
                 type: "Base Grade Container",
                 tradable: 1,
-                icon_url: "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsUFJ5KBFZv668FFYynaSdJGhE74y0wNWIw_OlNuvXkDpSuZQmi--SrN-h3gey-Uo6YWmlIoCLMlhplhFFvwI",
+                icon_url: "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXQ9QVcJY8gulReQ0DFSua4xJ2DAgs7KRFav4WpKhVn1r2aJGQX7ou0kdjbz6L1ZL-ClTsG6sEpjLvE8Y2i21Lm_kdpZG-lJ4KUbEZgNkYNvyBp",
                 inspect_url: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175",
             }
         });
