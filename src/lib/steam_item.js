@@ -1,6 +1,6 @@
 'use strict';
 
-const Util = require('./src/lib/util.js');
+const Util = require('./util.js');
 
 const ITEM_PROPS = [
     'id', 'appid', 'contextid', 'amount', 'name',

@@ -3,7 +3,7 @@
 const Chai = require('chai');
 const expect = Chai.expect;
 
-const SteamItem = require('../../index.js');
+const SteamItem = require('../lib/steam_item.js');
 
 const ITEM = {
     id: "8795563285",

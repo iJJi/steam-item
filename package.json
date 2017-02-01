@@ -1,7 +1,8 @@
 {
   "name": "steam-item",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "private": true,
+  "main": "./src/lib/steam_item.js",
   "scripts": {
     "test": "ENVIRONMENT=mocha mocha src/test --recursive"
   },
