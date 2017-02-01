@@ -1,12 +1,9 @@
 {
   "name": "steam-item",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "private": true,
   "scripts": {
     "test": "ENVIRONMENT=mocha mocha src/test --recursive"
-  },
-  "dependencies": {
-    "sha.js": "^2.4.8"
   },
   "devDependencies": {
     "mocha": "^3.2.0",
