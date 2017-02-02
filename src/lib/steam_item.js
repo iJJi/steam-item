@@ -9,7 +9,7 @@ const ITEM_PROPS = [
 ];
 
 function itemProps(item) {
-    let props = Util.copyProps(item, ITEM_PROPS);
+    var props = Util.copyProps(item, ITEM_PROPS);
 
     // Owner Steam ID
     props.owner_steamid = item.owner || item.owner_steamid;
@@ -20,8 +20,8 @@ function itemProps(item) {
     // Find inspect_url
     props.inspect_url = item.inspect_url;
     if (item.actions && item.actions.length > 0) {
-        for (let i = 0; i < item.actions.length; i++) {
-            let action = item.actions[i];
+        for (var i = 0; i < item.actions.length; i++) {
+            var action = item.actions[i];
             if (action.name && action.name.indexOf('Inspect') == 0) {
                 props.inspect_url = action.link;
                 break;
@@ -33,18 +33,18 @@ function itemProps(item) {
 }
 
 module.exports = {
-    listing: function (item, steamProperties = null) {
+    listing: function (item, steamProperties) {
         steamProperties = Object.assign(steamProperties || {}, itemProps(item));
 
         // Description
-        let description = [];
+        var description = [];
 
         if (Util.isArray(item.fraudwarnings)) {
             description = description.concat(item.fraudwarnings);
         }
 
         if (item.descriptions) {
-            description = description.concat(item.descriptions.map(d => {
+            description = description.concat(item.descriptions.map(function(d) {
                 //console.log('  d =', JSON.stringify(d, null, 2));
 
                 const value = d.value;
@@ -62,21 +62,21 @@ module.exports = {
                     return null;
                 }
 
-                let v = Util.stripHtml(value).trim();
+                var v = Util.stripHtml(value).trim();
                 if (v == '')  return null;
 
-                //console.log(`  v='${v}'`);
+                //console.log("  v="+v);
                 return v;
             }));
         }
 
         if (Util.isArray(item.tags)) {
-            description.push(item.tags.map(t => t.category_name ? `${t.category_name}: ${t.name}` : t.name).join(', '));
+            description.push(item.tags.map(function(t) { return t.category_name ? t.category_name+": "+t.name : t.name; }).join(', ')); 
         }
 
         return {
             name: item.market_hash_name || item.market_name || item.name,
-            description: description.filter(x => Util.notEmpty(x)).join("\n\n"),
+            description: description.filter(function(x) { return Util.notEmpty(x); }).join("\n\n"),
             steam_properties: steamProperties
         };
     },

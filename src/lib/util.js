@@ -14,7 +14,7 @@ Array.prototype.sample = function () {
  * @returns {Array} self
  */
 Array.prototype.shuffle = function () {
-    let currentIndex = this.length, temporaryValue, randomIndex;
+    var currentIndex = this.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
@@ -44,29 +44,35 @@ const Util = {
      * Random integer from [0..upperBoundExclusive)
      * @param upperBoundExclusive
      */
-    randomInt: upperBoundExclusive => Math.floor(Math.random() * upperBoundExclusive),
+    randomInt: function(upperBoundExclusive) { 
+      return Math.floor(Math.random() * upperBoundExclusive); 
+    },
 
     /**
      * If n is string, parse it
      * @param n either a number or string
      */
-    parseInt: n => (typeof n == 'string') ? parseInt(n, 10) : n,
+    parseInt: function(n) { 
+      return (typeof n == 'string') ? parseInt(n, 10) : n; 
+    },
 
     /**
      * If n is string, parse it
      * @param n either a number or string
      */
-    parseFloat: n => (typeof n == 'string') ? parseFloat(n) : n,
+    parseFloat: function(n) { 
+      return (typeof n == 'string') ? parseFloat(n) : n; 
+    },
 
     /**
      * Parse query string and return map
      * @param url Steam Trade URL
      * @returns query parameters, such as {partner: 'xxxx', token: 'yyyy'}
      */
-    parseQuery: url => {
+    parseQuery: function(url) {
         const Url = require('url');
         const parsedUrl = Url.parse(url, true);
-        return parsedUrl.query
+        return parsedUrl.query;
     },
 
     /**
@@ -74,63 +80,79 @@ const Util = {
      * @param x value to test
      * @return {boolean}
      */
-    notNull: x => ((typeof x !== 'undefined') && (x !== null)),
+    notNull: function(x) { 
+      return ((typeof x !== 'undefined') && (x !== null)); 
+    },
 
     /**
      * True if parameter is defined, not null, and not empty string
      * @param x value to test
      * @return {boolean}
      */
-    notEmpty: x => ((typeof x !== 'undefined') && (x !== null) && (x !== '')),
+    notEmpty: function(x) { 
+      return ((typeof x !== 'undefined') && (x !== null) && (x !== '')); 
+    },
 
     /**
      * True if parameter is not defined or null
      * @param x value to test
      * @return {boolean}
      */
-    isNull: x => ((typeof x === 'undefined') || (x === null)),
+    isNull: function(x) { 
+      return ((typeof x === 'undefined') || (x === null)); 
+    },
 
     /**
      * True if parameter is defined and value is true
      * @param x value to test
      * @return {boolean}
      */
-    isTrue: x => ((typeof x !== 'undefined') && (x)),
+    isTrue: function(x) { 
+      return ((typeof x !== 'undefined') && (x)); 
+    },
 
     /**
      * True if parameter is undefined or value is false
      * @param x value to test
      * @return {boolean}
      */
-    isFalse: x => !((typeof x === 'undefined') || (x)),
+    isFalse: function(x) { 
+      return !((typeof x === 'undefined') || (x)); 
+    },
 
     /**
      * True if parameter is defined and is an array
      * @param x value to test
      * @return {boolean}
      */
-    isArray: x => ((typeof x !== 'undefined') && Array.isArray(x)),
+    isArray: function(x) { 
+      return ((typeof x !== 'undefined') && Array.isArray(x)); 
+    },
 
     /**
      * True if parameter is defined and is a string
      * @param x value to test
      * @return {boolean}
      */
-    isString: x => (typeof x === 'string'),
+    isString: function(x) { 
+      return (typeof x === 'string'); 
+    },
 
     /**
      * Returns true if object m has property k
      * @param m object
      * @param k property to test
      */
-    hasKey: (m, k) => ((typeof m !== 'undefined') && (m !== null) && (typeof m !== 'object') && (k in m)),
+    hasKey: function(m, k) { 
+      return ((typeof m !== 'undefined') && (m !== null) && (typeof m !== 'object') && (k in m)); 
+    },
 
     /**
      * Returns first defined and non-null argument
      */
     options: function () {
-        for (let i = 0; i < arguments.length; i++) {
-            let x = arguments[i];
+        for (var i = 0; i < arguments.length; i++) {
+            var x = arguments[i];
             if ((typeof x !== 'undefined') && (x !== null)) {
                 return x;
             }
@@ -141,15 +163,15 @@ const Util = {
     /**
      * Current time in RFC3339 ZULU format
      */
-    now: function (offsetMS = 0) {
-        return (new Date(Date.now() + offsetMS)).toISOString();
+    now: function (offsetMS) {
+        return (new Date(Date.now() + (offsetMS || 0))).toISOString();
     },
 
     /**
      * Current time as UNIX timestamp
      */
-    timestamp: function (offsetMS = 0) {
-        return Math.floor((Date.now() + offsetMS)/1000);
+    timestamp: function (offsetMS) {
+        return Math.floor((Date.now() + (offsetMS || 0))/1000);
     },
 
     // '2016-06-03T01:20:45.702Z' => 1464916845.702
@@ -173,9 +195,9 @@ const Util = {
 
     copyProps: function (map, keys) {
         const result = {};
-        for (let i = 0; i < keys.length; i++) {
-            let k = keys[i];
-            let v = map[k];
+        for (var i = 0; i < keys.length; i++) {
+            var k = keys[i];
+            var v = map[k];
             if (Util.notEmpty(v)) {
                 result[k] = (k === 'amount' || k === 'tradable') ? v : String(v);
             }
@@ -189,7 +211,7 @@ const Util = {
 
     nextPage: function (req, qs) {
         const protocol = req.get('X-Forwarded-Proto') || req.protocol;
-        let port = req.get('X-Forwarded-Port') || req.app.settings.port;
+        var port = req.get('X-Forwarded-Port') || req.app.settings.port;
 
         // Don't specify port if it is the default port for the protocol
         if ((protocol === 'https' && port == '443') || (protocol === 'http' && port == '80')) {
