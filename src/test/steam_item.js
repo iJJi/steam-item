@@ -115,6 +115,10 @@ describe("Steam Item", function() {
         expect(SteamItem.fungible(ITEM)).to.be.true;
     });
 
+    it("Inspect Url", function() {
+        expect(SteamItem.inspectUrl(ITEM)).to.equal("steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175");
+    });
+
     it("Listing", function() {
         expect(SteamItem.listing(ITEM)).to.deep.equal({
             name: "Chroma 3 Case",

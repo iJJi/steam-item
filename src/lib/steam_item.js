@@ -8,6 +8,19 @@ const ITEM_PROPS = [
     'original_id'
 ];
 
+function inspectUrl(item) {
+    // Find inspect_url
+    if (item.actions && item.actions.length > 0) {
+        for (var i = 0; i < item.actions.length; i++) {
+            var action = item.actions[i];
+            if (action.name && action.name.indexOf('Inspect') == 0) {
+                return action.link;
+            }
+        }
+    }
+    return null;
+}
+
 function itemProps(item) {
     var props = Util.copyProps(item, ITEM_PROPS);
 
@@ -16,17 +29,11 @@ function itemProps(item) {
 
     // Icon URL, larger one is preferred
     props.icon_url = item.icon_url_large || item.icon_url;
-    
-    // Find inspect_url
-    props.inspect_url = item.inspect_url;
-    if (item.actions && item.actions.length > 0) {
-        for (var i = 0; i < item.actions.length; i++) {
-            var action = item.actions[i];
-            if (action.name && action.name.indexOf('Inspect') == 0) {
-                props.inspect_url = action.link;
-                break;
-            }
-        }
+
+    // Set inspect_url
+    const inspect_url = inspectUrl(item);
+    if (Util.notNull(inspect_url)) {
+        props.inspect_url = inspect_url;
     }
 
     return props;
@@ -82,6 +89,8 @@ module.exports = {
     },
 
     properties: itemProps,
+
+    inspectUrl: inspectUrl,
 
     fungible: function (item) {
         return item.name == (item.market_hash_name || item.market_name);
