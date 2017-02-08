@@ -10,6 +10,10 @@ const ITEM_PROPS = [
 
 function inspectUrl(item) {
     // Find inspect_url
+    if (Util.notNull(item.inspect_url)) {
+        return item.inspect_url;
+    }
+
     if (item.actions && item.actions.length > 0) {
         for (var i = 0; i < item.actions.length; i++) {
             var action = item.actions[i];
@@ -18,6 +22,7 @@ function inspectUrl(item) {
             }
         }
     }
+
     return null;
 }
 
