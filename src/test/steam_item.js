@@ -119,6 +119,26 @@ describe("Steam Item", function() {
         expect(SteamItem.inspectUrl(ITEM)).to.equal("steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175");
     });
 
+    it("Wear Value", function() {
+        expect(SteamItem.wearValue( {
+            "id": 8785819268,
+            "original_id": 7323419264,
+            "defindex": 4233,
+            "level": 1,
+            "quality": 4,
+            "inventory": 3221225475,
+            "quantity": 1,
+            "rarity": 1,
+            "attributes": [
+                {
+                    "defindex": 68,
+                    "value": 141,
+                    "float_value": 1.1
+                }
+            ]
+        })).to.equal(1.1);
+    });
+
     it("Listing", function() {
         expect(SteamItem.listing(ITEM)).to.deep.equal({
             name: "Chroma 3 Case",

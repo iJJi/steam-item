@@ -26,6 +26,24 @@ function inspectUrl(item) {
     return null;
 }
 
+// item is returned from https://api.steampowered.com/IEconItems_730
+function wearValue(item) {
+    if (Util.notNull(item.wear_value)) {
+        return item.wear_value;
+    }
+
+    if (item.attributes && item.attributes.length > 0) {
+        for (var i = 0; i < item.attributes.length; i++) {
+            var attr = item.attributes[i];
+            if (attr.defindex == 68) {
+                return attr.float_value;
+            }
+        }
+    }
+
+    return null;
+}
+
 function itemProps(item) {
     var props = Util.copyProps(item, ITEM_PROPS);
 
@@ -94,8 +112,8 @@ module.exports = {
     },
 
     properties: itemProps,
-
     inspectUrl: inspectUrl,
+    wearValue: wearValue,
 
     fungible: function (item) {
         return item.name == (item.market_hash_name || item.market_name);
