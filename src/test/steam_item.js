@@ -131,12 +131,11 @@ describe("Steam Item", function() {
             "rarity": 1,
             "attributes": [
                 {
-                    "defindex": 68,
-                    "value": 141,
-                    "float_value": 1.1
-                }
-            ]
-        })).to.equal(1.1);
+                    "defindex": 8,
+                    "value": 1052543512,
+                    "float_value": 0.3682410717010498
+                }            ]
+        })).to.equal(0.3682410717010498);
     });
 
     it("Listing", function() {

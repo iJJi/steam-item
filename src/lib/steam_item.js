@@ -35,7 +35,7 @@ function wearValue(item) {
     if (item.attributes && item.attributes.length > 0) {
         for (var i = 0; i < item.attributes.length; i++) {
             var attr = item.attributes[i];
-            if (attr.defindex == 68) {
+            if (attr.defindex == 8) {
                 return attr.float_value;
             }
         }
@@ -64,7 +64,7 @@ function itemProps(item) {
 
 module.exports = {
     listing: function (item, steamProperties) {
-        steamProperties = Object.assign(steamProperties || {}, itemProps(item));
+        steamProperties = Object.assign({}, steamProperties, itemProps(item));
 
         // Description
         var description = [];
