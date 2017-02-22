@@ -59,6 +59,16 @@ function itemProps(item) {
         props.inspect_url = inspect_url;
     }
 
+    const wearValue = item.wear_value;
+    if (Util.notNull(wearValue)) {
+        props.wear_value = wearValue;
+    }
+
+    const float = item.float;
+    if (Util.notNull(float)) {
+        props.float = float;
+    }
+
     return props;
 }
 
