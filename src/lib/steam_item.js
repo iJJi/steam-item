@@ -1,6 +1,7 @@
 'use strict';
 
 const Util = require('./util.js');
+const ObjectAssign = require('./object_assign.js');
 
 const ITEM_PROPS = [
     'id', 'appid', 'contextid', 'amount', 'name',
@@ -74,7 +75,7 @@ function itemProps(item) {
 
 module.exports = {
     listing: function (item, steamProperties) {
-        steamProperties = Object.assign({}, steamProperties, itemProps(item));
+        steamProperties = ObjectAssign({}, steamProperties, itemProps(item));
 
         // Description
         var description = [];
