@@ -119,23 +119,37 @@ describe("Steam Item", function() {
         expect(SteamItem.inspectUrl(ITEM)).to.equal("steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175");
     });
 
-    it("Wear Value", function() {
-        expect(SteamItem.wearValue( {
-            "id": 8785819268,
-            "original_id": 7323419264,
-            "defindex": 4233,
-            "level": 1,
-            "quality": 4,
-            "inventory": 3221225475,
-            "quantity": 1,
-            "rarity": 1,
-            "attributes": [
-                {
-                    "defindex": 8,
-                    "value": 1052543512,
-                    "float_value": 0.3682410717010498
-                }            ]
-        })).to.equal(0.3682410717010498);
+    it("needsWearValue", function() {
+        const item = {
+            id: "8795563285",
+            appid: "730",
+            name: "Sword",
+            market_hash_name: "Sword (Field-Tested)",
+            inspect_url: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175"
+        };
+
+        expect(SteamItem.needsWearValue(item)).to.be.true;
+
+        // name and market_hashname are the same
+        expect(SteamItem.needsWearValue(Object.assign({}, item, {
+            name: "Chroma 3 Case",
+            market_hash_name: "Chroma 3 Case",
+        }))).to.be.false;
+
+        // appid != '730'
+        expect(SteamItem.needsWearValue(Object.assign({}, item, {
+            appid: "123"
+        }))).to.be.false;
+
+        // appid != '730'
+        expect(SteamItem.needsWearValue(Object.assign({}, item, {
+            appid: "123"
+        }))).to.be.false;
+
+        // inspect_url null or missing
+        expect(SteamItem.needsWearValue(Object.assign({}, item, {
+            inspect_url: null
+        }))).to.be.false;
     });
 
     it("Listing", function() {

@@ -28,21 +28,9 @@ function inspectUrl(item) {
 }
 
 // item is returned from https://api.steampowered.com/IEconItems_730
-function wearValue(item) {
-    if (Util.notNull(item.wear_value)) {
-        return item.wear_value;
-    }
-
-    if (item.attributes && item.attributes.length > 0) {
-        for (var i = 0; i < item.attributes.length; i++) {
-            var attr = item.attributes[i];
-            if (attr.defindex == 8) {
-                return attr.float_value;
-            }
-        }
-    }
-
-    return null;
+function needsWearValue(item) {
+    return Util.notNull(item) && Util.isNull(item.wear_value) && (item.appid == '730') &&
+        Util.notNull(item.inspect_url) && (item.name !== item.market_hash_name);
 }
 
 function itemProps(item) {
@@ -124,7 +112,7 @@ module.exports = {
 
     properties: itemProps,
     inspectUrl: inspectUrl,
-    wearValue: wearValue,
+    needsWearValue: needsWearValue,
 
     fungible: function (item) {
         return item.name == (item.market_hash_name || item.market_name);
