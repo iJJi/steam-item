@@ -67,7 +67,7 @@ module.exports = {
         steamProperties = ObjectAssign({}, steamProperties, itemProps(item));
 
         // Description
-        let description = [];
+        var description = [];
 
         if (Util.isArray(item.fraudwarnings)) {
             description = description.concat(item.fraudwarnings);
