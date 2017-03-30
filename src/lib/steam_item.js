@@ -67,7 +67,7 @@ module.exports = {
         steamProperties = ObjectAssign({}, steamProperties, itemProps(item));
 
         // Description
-        var description = [];
+        let description = [];
 
         if (Util.isArray(item.fraudwarnings)) {
             description = description.concat(item.fraudwarnings);
@@ -104,9 +104,10 @@ module.exports = {
             description.push(item.tags.map(function(t) { return t.category_name ? t.category_name+": "+t.name : t.name; }).join(', ')); 
         }
 
+        description = description.filter(function(x) { return Util.notEmpty(x); }).join("\n\n");
         return {
             name: item.market_hash_name || item.market_name || item.name,
-            description: description.filter(function(x) { return Util.notEmpty(x); }).join("\n\n"),
+            description: Util.notEmpty(description) ? description : '.',
             steam_properties: steamProperties
         };
     },
