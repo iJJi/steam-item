@@ -1,9 +1,9 @@
 'use strict';
 
-const Util = require('./util.js');
-const ObjectAssign = require('./object_assign.js');
+var Util = require('./util.js');
+var ObjectAssign = require('./object_assign.js');
 
-const ITEM_PROPS = [
+var ITEM_PROPS = [
     'id', 'appid', 'contextid', 'amount', 'name',
     'type', 'tradable', 'classid', 'icon_url', 'market_hash_name',
     'original_id'
@@ -44,17 +44,17 @@ function itemProps(item) {
     props.icon_url = item.icon_url_large || item.icon_url;
 
     // Set inspect_url
-    const inspect_url = inspectUrl(item);
+    var inspect_url = inspectUrl(item);
     if (Util.notNull(inspect_url)) {
         props.inspect_url = inspect_url;
     }
 
-    const wearValue = item.wear_value;
+    var wearValue = item.wear_value;
     if (Util.notNull(wearValue)) {
         props.wear_value = wearValue;
     }
 
-    const float = item.float;
+    var float = item.float;
     if (Util.notNull(float)) {
         props.float = float;
     }
@@ -77,7 +77,7 @@ module.exports = {
             description = description.concat(item.descriptions.map(function(d) {
                 //console.log('  d =', JSON.stringify(d, null, 2));
 
-                const value = d.value;
+                var value = d.value;
                 if (!value) {
                     return null;
                 }

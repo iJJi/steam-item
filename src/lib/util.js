@@ -32,9 +32,9 @@ Array.prototype.shuffle = function () {
     return this;
 };
 
-const HTML_TAG_REGEX = /(<([^>]+)>)/ig;
+var HTML_TAG_REGEX = /(<([^>]+)>)/ig;
 
-const Util = {
+var Util = {
     SECOND:       1000,
     MINUTE:    60*1000,
     HOUR:   60*60*1000,
@@ -70,8 +70,8 @@ const Util = {
      * @returns query parameters, such as {partner: 'xxxx', token: 'yyyy'}
      */
     parseQuery: function(url) {
-        const Url = require('url');
-        const parsedUrl = Url.parse(url, true);
+        var Url = require('url');
+        var parsedUrl = Url.parse(url, true);
         return parsedUrl.query;
     },
 
@@ -194,7 +194,7 @@ const Util = {
     },
 
     copyProps: function (map, keys) {
-        const result = {};
+        var result = {};
         for (var i = 0; i < keys.length; i++) {
             var k = keys[i];
             var v = map[k];
@@ -210,7 +210,7 @@ const Util = {
     },
 
     nextPage: function (req, qs) {
-        const protocol = req.get('X-Forwarded-Proto') || req.protocol;
+        var protocol = req.get('X-Forwarded-Proto') || req.protocol;
         var port = req.get('X-Forwarded-Port') || req.app.settings.port;
 
         // Don't specify port if it is the default port for the protocol
@@ -218,7 +218,7 @@ const Util = {
             port = null;
         }
 
-        const Url = require('url');
+        var Url = require('url');
 
         return Url.format({
             hostname: req.get('X-Forwarded-Host') || req.hostname,
