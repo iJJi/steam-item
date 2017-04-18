@@ -118,5 +118,28 @@ module.exports = {
 
     fungible: function (item) {
         return item.name == (item.market_hash_name || item.market_name);
+    },
+
+    // Return tradeHold release time, if any
+    tradeHold: function(item) {
+        if (!item.tradable) {
+            var ownerDescriptions = item.owner_descriptions;
+            if (Util.isArray(ownerDescriptions)) {
+                for (var i = 0; i < ownerDescriptions.length; i++) {
+                    var desc = ownerDescriptions[i].value;
+                    if (Util.isString(desc)) {
+                        let match = desc.match(/^Tradable after: \[date\](\d+)\[\/date\]\.$/);
+                        if (Util.notNull(match)) {
+                            var timestamp = Util.parseInt(match[1]);
+                            if (timestamp > 0) {
+                                return Util.epochToIsoString(timestamp)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 };

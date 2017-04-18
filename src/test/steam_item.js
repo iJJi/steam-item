@@ -115,6 +115,21 @@ describe("Steam Item", function() {
         expect(SteamItem.fungible(ITEM)).to.be.true;
     });
 
+    it("Trade Hold", function() {
+        expect(SteamItem.tradeHold(ITEM)).to.be.null;
+
+        expect(SteamItem.tradeHold(Object.assign({}, ITEM, {
+            tradable: 0,
+            owner_descriptions: [
+                {
+                    "type": "",
+                    "value": "Tradable after: [date]1492642800[/date].",
+                    "color": "FF0000"
+                }
+            ]
+        }))).to.equal('2017-04-19T23:00:00.000Z');
+    });
+
     it("Inspect Url", function() {
         expect(SteamItem.inspectUrl(ITEM)).to.equal("steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175");
     });
