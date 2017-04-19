@@ -73,7 +73,7 @@ function itemProps(item) {
 
     var trade_hold = tradeHold(item);
     if (Util.notNull(trade_hold)) {
-        props.steam_hold = trade_hold;
+        props.held_until = trade_hold;
     }
 
     var wearValue = item.wear_value;

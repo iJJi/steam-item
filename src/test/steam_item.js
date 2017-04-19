@@ -210,7 +210,7 @@ describe("Steam Item", function() {
                 market_hash_name: "Chroma 3 Case",
                 type: "Base Grade Container",
                 tradable: 0,
-                steam_hold: "2017-04-19T23:00:00.000Z",
+                held_until: "2017-04-19T23:00:00.000Z",
                 icon_url: "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXQ9QVcJY8gulReQ0DFSua4xJ2DAgs7KRFav4WpKhVn1r2aJGQX7ou0kdjbz6L1ZL-ClTsG6sEpjLvE8Y2i21Lm_kdpZG-lJ4KUbEZgNkYNvyBp",
                 inspect_url: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175"
             }
