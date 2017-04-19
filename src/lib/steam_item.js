@@ -34,6 +34,28 @@ function needsWearValue(item) {
         Util.notNull(item.name) && Util.notNull(item.market_hash_name) && (item.name !== item.market_hash_name);
 }
 
+function tradeHold(item) {
+    if (!item.tradable) {
+        var ownerDescriptions = item.owner_descriptions;
+        if (Util.isArray(ownerDescriptions)) {
+            for (var i = 0; i < ownerDescriptions.length; i++) {
+                var desc = ownerDescriptions[i].value;
+                if (Util.isString(desc)) {
+                    let match = desc.match(/^Tradable after: \[date\](\d+)\[\/date\]\.$/);
+                    if (Util.notNull(match)) {
+                        var timestamp = Util.parseInt(match[1]);
+                        if (timestamp > 0) {
+                            return Util.epochToIsoString(timestamp)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return null;
+}
+
 function itemProps(item) {
     var props = Util.copyProps(item, ITEM_PROPS);
 
@@ -47,6 +69,11 @@ function itemProps(item) {
     var inspect_url = inspectUrl(item);
     if (Util.notNull(inspect_url)) {
         props.inspect_url = inspect_url;
+    }
+
+    var trade_hold = tradeHold(item);
+    if (Util.notNull(trade_hold)) {
+        props.steam_hold = trade_hold;
     }
 
     var wearValue = item.wear_value;
@@ -121,25 +148,5 @@ module.exports = {
     },
 
     // Return tradeHold release time, if any
-    tradeHold: function(item) {
-        if (!item.tradable) {
-            var ownerDescriptions = item.owner_descriptions;
-            if (Util.isArray(ownerDescriptions)) {
-                for (var i = 0; i < ownerDescriptions.length; i++) {
-                    var desc = ownerDescriptions[i].value;
-                    if (Util.isString(desc)) {
-                        let match = desc.match(/^Tradable after: \[date\](\d+)\[\/date\]\.$/);
-                        if (Util.notNull(match)) {
-                            var timestamp = Util.parseInt(match[1]);
-                            if (timestamp > 0) {
-                                return Util.epochToIsoString(timestamp)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return null;
-    }
+    tradeHold: tradeHold
 };
