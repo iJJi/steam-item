@@ -90,6 +90,18 @@ function itemProps(item) {
         props.float = float;
     }
 
+    if (Util.isArray(item.tags)) {
+        props.tags = item.tags.map(function(t) {
+            if (t.category_name) {
+                return t.category_name + ": " + t.name;
+            } else if (t.name) {
+                return t.name
+            } else {
+                return t;
+            }
+        });
+    }
+
     return props;
 }
 
