@@ -9,6 +9,10 @@ var ITEM_PROPS = [
     'original_id'
 ];
 
+var LISTING_TAG_COUNT_MAX = 32;
+var LISTING_TAG_LENGTH_MAX = 128;
+var LISTING_TAG_NON_CHARSET = new RegExp('[^0-9a-zA-Z ._:\/]', 'g');
+
 function inspectUrl(item) {
     // Find inspect_url
     if (Util.notNull(item.inspect_url)) {
@@ -89,6 +93,12 @@ function itemProps(item) {
     return props;
 }
 
+// search safe tag
+function listing_safe_tag(s) {
+    return Util.isNull(s) ? s : s.replace(LISTING_TAG_NON_CHARSET, '').replace(/\s+/g, ' ')
+        .trim().slice(0, LISTING_TAG_LENGTH_MAX);
+}
+
 module.exports = {
     listing: function (item, steamProperties) {
         steamProperties = ObjectAssign({}, steamProperties, itemProps(item));
@@ -127,11 +137,26 @@ module.exports = {
             }));
         }
 
+        // Deal with tags
         let tags = [];
         if (Util.isArray(item.tags)) {
             tags = item.tags.map(function(t) { return t.category_name ? t.category_name+": "+t.name : t.name; });
             description.push(tags.join(', '));
         }
+
+        if (item.market_hash_name) {
+            tags.unshift('market_hash_name: ' + item.market_hash_name);
+        }
+        if (item.market_name) {
+            tags.unshift('market_name: ' + item.market_name);
+        }
+
+        // Make tags confirm to listing limits
+        tags = tags.map(function (t) {
+            return listing_safe_tag(t);
+        }).filter(function (t) {
+            return Util.notEmpty(t);
+        }).slice(0, LISTING_TAG_COUNT_MAX);
 
         description = description.filter(function(x) { return Util.notEmpty(x); }).join("\n\n");
         return {

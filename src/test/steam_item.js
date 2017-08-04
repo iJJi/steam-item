@@ -172,10 +172,12 @@ describe("Steam Item", function() {
             name: "Chroma 3 Case",
             description: "Container Series #141\n\nContains one of the following:\n\nDual Berettas | Ventilators\n\nG3SG1 | Orange Crash\n\nor an Exceedingly Rare Special Item!\n\nType: Container, Collection: The Chroma 3 Collection, Category: Normal, Quality: Base Grade",
             tags: [
+                "market_name: Chroma 3 Case",
+                "market_hash_name: Chroma 3 Case",
                 "Type: Container",
                 "Collection: The Chroma 3 Collection",
                 "Category: Normal",
-                "Quality: Base Grade",
+                "Quality: Base Grade"
             ],
             steam_properties: {
                 id: "8795563285",
@@ -206,10 +208,12 @@ describe("Steam Item", function() {
             name: "Chroma 3 Case",
             description: "Container Series #141\n\nContains one of the following:\n\nDual Berettas | Ventilators\n\nG3SG1 | Orange Crash\n\nor an Exceedingly Rare Special Item!\n\nType: Container, Collection: The Chroma 3 Collection, Category: Normal, Quality: Base Grade",
             tags: [
+                "market_name: Chroma 3 Case",
+                "market_hash_name: Chroma 3 Case",
                 "Type: Container",
                 "Collection: The Chroma 3 Collection",
                 "Category: Normal",
-                "Quality: Base Grade",
+                "Quality: Base Grade"
             ],
             steam_properties: {
                 id: "8795563285",
