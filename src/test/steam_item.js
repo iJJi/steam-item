@@ -171,6 +171,12 @@ describe("Steam Item", function() {
         expect(SteamItem.listing(ITEM)).to.deep.equal({
             name: "Chroma 3 Case",
             description: "Container Series #141\n\nContains one of the following:\n\nDual Berettas | Ventilators\n\nG3SG1 | Orange Crash\n\nor an Exceedingly Rare Special Item!\n\nType: Container, Collection: The Chroma 3 Collection, Category: Normal, Quality: Base Grade",
+            tags: [
+                "Type: Container",
+                "Collection: The Chroma 3 Collection",
+                "Category: Normal",
+                "Quality: Base Grade",
+            ],
             steam_properties: {
                 id: "8795563285",
                 owner_steamid: "76561198277655553",
@@ -199,6 +205,12 @@ describe("Steam Item", function() {
         }))).to.deep.equal({
             name: "Chroma 3 Case",
             description: "Container Series #141\n\nContains one of the following:\n\nDual Berettas | Ventilators\n\nG3SG1 | Orange Crash\n\nor an Exceedingly Rare Special Item!\n\nType: Container, Collection: The Chroma 3 Collection, Category: Normal, Quality: Base Grade",
+            tags: [
+                "Type: Container",
+                "Collection: The Chroma 3 Collection",
+                "Category: Normal",
+                "Quality: Base Grade",
+            ],
             steam_properties: {
                 id: "8795563285",
                 owner_steamid: "76561198277655553",

@@ -127,14 +127,17 @@ module.exports = {
             }));
         }
 
+        let tags = [];
         if (Util.isArray(item.tags)) {
-            description.push(item.tags.map(function(t) { return t.category_name ? t.category_name+": "+t.name : t.name; }).join(', ')); 
+            tags = item.tags.map(function(t) { return t.category_name ? t.category_name+": "+t.name : t.name; });
+            description.push(tags.join(', '));
         }
 
         description = description.filter(function(x) { return Util.notEmpty(x); }).join("\n\n");
         return {
             name: item.market_hash_name || item.market_name || item.name,
             description: Util.notEmpty(description) ? description : '.',
+            tags: tags,
             steam_properties: steamProperties
         };
     },
