@@ -141,20 +141,25 @@ module.exports = {
         let tags = [];
         if (Util.isArray(item.tags)) {
             tags = item.tags.map(function(t) { return t.category_name ? t.category_name+": "+t.name : t.name; });
+            steamProperties.tags =  tags;
+
             description.push(tags.join(', '));
         }
 
-        if (item.market_hash_name) {
-            tags.unshift('market_hash_name: ' + item.market_hash_name);
-        }
-        if (item.name) {
-            tags.unshift('name: ' + item.name);
-        }
-
         // Make tags confirm to listing limits
+        // NOTE: this also makes a new array which is needed before we modify it
         tags = tags.map(function (t) {
             return listingSafeTag(t);
-        }).filter(function (t) {
+        });
+
+        if (item.market_hash_name) {
+            tags.unshift(listingSafeTag('market_hash_name: ' + item.market_hash_name));
+        }
+        if (item.name) {
+            tags.unshift(listingSafeTag('name: ' + item.name));
+        }
+
+        tags = tags.filter(function (t) {
             return Util.notEmpty(t);
         }).slice(0, LISTING_TAG_COUNT_MAX);
 

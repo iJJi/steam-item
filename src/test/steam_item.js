@@ -186,6 +186,12 @@ describe("Steam Item", function() {
             steam_properties: {
                 id: "8795563285",
                 owner_steamid: "76561198277655553",
+                tags: [
+                    "Type: Container",
+                    "Collection: The Chroma 3 Collection",
+                    "Category: Normal",
+                    "Quality: Base Grade"
+                ],
                 appid: "730",
                 classid: "1690096482",
                 contextid: "2",
@@ -222,6 +228,12 @@ describe("Steam Item", function() {
             steam_properties: {
                 id: "8795563285",
                 owner_steamid: "76561198277655553",
+                tags: [
+                    "Type: Container",
+                    "Collection: The Chroma 3 Collection",
+                    "Category: Normal",
+                    "Quality: Base Grade"
+                ],
                 appid: "730",
                 classid: "1690096482",
                 contextid: "2",
