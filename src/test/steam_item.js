@@ -167,6 +167,10 @@ describe("Steam Item", function() {
         }))).to.be.false;
     });
 
+    it("Listing Safe Tag", function () {
+        expect(SteamItem.listingSafeTag('market_hash_name: M4A1-S | Flashback (Field-Tested) ')).to.equal('market_hash_name: M4A1S Flashback FieldTested');
+    });
+
     it("Listing", function() {
         expect(SteamItem.listing(ITEM)).to.deep.equal({
             name: "Chroma 3 Case",

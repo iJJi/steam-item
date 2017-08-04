@@ -94,7 +94,7 @@ function itemProps(item) {
 }
 
 // search safe tag
-function listing_safe_tag(s) {
+function listingSafeTag(s) {
     return Util.isNull(s) ? s : s.replace(LISTING_TAG_NON_CHARSET, '').replace(/\s+/g, ' ')
         .trim().slice(0, LISTING_TAG_LENGTH_MAX);
 }
@@ -153,7 +153,7 @@ module.exports = {
 
         // Make tags confirm to listing limits
         tags = tags.map(function (t) {
-            return listing_safe_tag(t);
+            return listingSafeTag(t);
         }).filter(function (t) {
             return Util.notEmpty(t);
         }).slice(0, LISTING_TAG_COUNT_MAX);
@@ -170,6 +170,7 @@ module.exports = {
     properties: itemProps,
     inspectUrl: inspectUrl,
     needsWearValue: needsWearValue,
+    listingSafeTag: listingSafeTag,
 
     fungible: function (item) {
         return item.name == (item.market_hash_name || item.market_name);
