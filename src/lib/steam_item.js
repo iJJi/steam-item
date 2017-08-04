@@ -147,8 +147,8 @@ module.exports = {
         if (item.market_hash_name) {
             tags.unshift('market_hash_name: ' + item.market_hash_name);
         }
-        if (item.market_name) {
-            tags.unshift('market_name: ' + item.market_name);
+        if (item.name) {
+            tags.unshift('name: ' + item.name);
         }
 
         // Make tags confirm to listing limits
