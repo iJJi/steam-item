@@ -134,7 +134,7 @@ describe("Steam Item", function() {
         expect(SteamItem.inspectUrl(ITEM)).to.equal("steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175");
     });
 
-    it("needsWearValue", function() {
+    it("needsItemInfo", function() {
         const item = {
             id: "8795563285",
             appid: "730",
@@ -143,26 +143,26 @@ describe("Steam Item", function() {
             inspect_url: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175"
         };
 
-        expect(SteamItem.needsWearValue(item)).to.be.true;
+        expect(SteamItem.needsItemInfo(item)).to.be.true;
 
         // name and market_hashname are the same
-        expect(SteamItem.needsWearValue(Object.assign({}, item, {
+        expect(SteamItem.needsItemInfo(Object.assign({}, item, {
             name: "Chroma 3 Case",
             market_hash_name: "Chroma 3 Case",
         }))).to.be.false;
 
         // appid != '730'
-        expect(SteamItem.needsWearValue(Object.assign({}, item, {
+        expect(SteamItem.needsItemInfo(Object.assign({}, item, {
             appid: "123"
         }))).to.be.false;
 
         // appid != '730'
-        expect(SteamItem.needsWearValue(Object.assign({}, item, {
+        expect(SteamItem.needsItemInfo(Object.assign({}, item, {
             appid: "123"
         }))).to.be.false;
 
         // inspect_url null or missing
-        expect(SteamItem.needsWearValue(Object.assign({}, item, {
+        expect(SteamItem.needsItemInfo(Object.assign({}, item, {
             inspect_url: null
         }))).to.be.false;
     });

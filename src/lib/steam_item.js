@@ -31,9 +31,10 @@ function inspectUrl(item) {
 }
 
 // item is returned from https://api.steampowered.com/IEconItems_730
-function needsWearValue(item) {
-    return Util.notNull(item) && Util.isNull(item.wear_value) &&
+function needsItemInfo(item) {
+    return Util.notNull(item) &&
         (item.appid == '730') && Util.notNull(item.inspect_url) &&
+        Util.isNull(item.paintwear) &&
         Util.notNull(item.name) && Util.notNull(item.market_hash_name) && (item.name !== item.market_hash_name);
 }
 
@@ -167,7 +168,7 @@ module.exports = {
 
     properties: itemProps,
     inspectUrl: inspectUrl,
-    needsWearValue: needsWearValue,
+    needsItemInfo: needsItemInfo,
     canonicalTag: canonicalTag,
 
     fungible: function (item) {
