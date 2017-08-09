@@ -11,7 +11,6 @@ var ITEM_PROPS = [
 
 var LISTING_TAG_COUNT_MAX = 32;
 var LISTING_TAG_LENGTH_MAX = 128;
-var LISTING_TAG_NON_CHARSET = new RegExp('[^0-9a-zA-Z ._:\/]', 'g');
 
 function inspectUrl(item) {
     // Find inspect_url
@@ -93,10 +92,9 @@ function itemProps(item) {
     return props;
 }
 
-// search safe tag
-function listingSafeTag(s) {
-    return Util.isNull(s) ? s : s.replace(LISTING_TAG_NON_CHARSET, '').replace(/\s+/g, ' ')
-        .trim().slice(0, LISTING_TAG_LENGTH_MAX);
+// Canonical tag
+function canonicalTag(s) {
+    return Util.isNull(s) ? s : s.replace(/\s+/g, ' ').trim().slice(0, LISTING_TAG_LENGTH_MAX);
 }
 
 module.exports = {
@@ -153,7 +151,7 @@ module.exports = {
 
         // Make tags confirm to listing limits
         tags = tags.map(function (t) {
-            return listingSafeTag(t);
+            return canonicalTag(t);
         }).filter(function (t) {
             return Util.notEmpty(t);
         }).slice(0, LISTING_TAG_COUNT_MAX);
@@ -170,7 +168,7 @@ module.exports = {
     properties: itemProps,
     inspectUrl: inspectUrl,
     needsWearValue: needsWearValue,
-    listingSafeTag: listingSafeTag,
+    canonicalTag: canonicalTag,
 
     fungible: function (item) {
         return item.name == (item.market_hash_name || item.market_name);

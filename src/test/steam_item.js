@@ -167,8 +167,8 @@ describe("Steam Item", function() {
         }))).to.be.false;
     });
 
-    it("Listing Safe Tag", function () {
-        expect(SteamItem.listingSafeTag('market_hash_name: M4A1-S | Flashback (Field-Tested) ')).to.equal('market_hash_name: M4A1S Flashback FieldTested');
+    it("Canonical Tag", function () {
+        expect(SteamItem.canonicalTag(" market_hash_name: M4A1-S  |  Flashback (Field-Tested)\n\r")).to.equal('market_hash_name: M4A1-S | Flashback (Field-Tested)');
     });
 
     it("Listing", function() {
