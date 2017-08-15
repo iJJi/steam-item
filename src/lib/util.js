@@ -209,6 +209,16 @@ var Util = {
         return Util.isString(html) ? html.replace(HTML_TAG_REGEX, "") : "";
     },
 
+    cleanEmptyValues: function (obj) {
+        for (var k in obj) {
+            var v = obj[k];
+            if (v === "" || v === undefined) {
+                delete obj[k];
+            }
+        }
+        return obj;
+    },
+
     nextPage: function (req, qs) {
         var protocol = req.get('X-Forwarded-Proto') || req.protocol;
         var port = req.get('X-Forwarded-Port') || req.app.settings.port;

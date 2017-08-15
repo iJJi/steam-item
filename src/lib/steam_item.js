@@ -162,7 +162,7 @@ module.exports = {
             name: item.market_hash_name || item.market_name || item.name,
             description: Util.notEmpty(description) ? description : '.',
             tags: tags,
-            steam_properties: steamProperties
+            steam_properties: Util.cleanEmptyValues(steamProperties)
         };
     },
 
