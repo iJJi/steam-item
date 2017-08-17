@@ -60,11 +60,11 @@ function tradeHold(item) {
     return null;
 }
 
-function itemProps(item) {
+function itemProps(item, steamId = null) {
     var props = Util.copyProps(item, ITEM_PROPS);
 
     // Owner Steam ID
-    props.owner_steamid = item.owner || item.owner_steamid;
+    props.owner_steamid = item.owner || item.owner_steamid || steamId;
 
     // Icon URL, larger one is preferred
     props.icon_url = item.icon_url_large || item.icon_url;
@@ -90,7 +90,7 @@ function itemProps(item) {
         props.float = float;
     }
 
-    return props;
+    return Util.cleanEmptyValues(props);
 }
 
 // Canonical tag
@@ -99,8 +99,8 @@ function canonicalTag(s) {
 }
 
 module.exports = {
-    listing: function (item, steamProperties) {
-        steamProperties = ObjectAssign({}, steamProperties, itemProps(item));
+    listing: function (item, steamProperties = null, steamId = null) {
+        steamProperties = ObjectAssign({owner_steamid: steamId}, steamProperties, itemProps(item));
 
         // Description
         var description = [];

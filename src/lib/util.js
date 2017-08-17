@@ -210,13 +210,14 @@ var Util = {
     },
 
     cleanEmptyValues: function (obj) {
+        var result = {};
         for (var k in obj) {
             var v = obj[k];
-            if (v === "" || v === undefined) {
-                delete obj[k];
+            if (v !== "" && v !== undefined) {
+                result[k] = v;
             }
         }
-        return obj;
+        return result;
     },
 
     nextPage: function (req, qs) {
