@@ -199,7 +199,7 @@ var Util = {
             var k = keys[i];
             var v = map[k];
             if (Util.notEmpty(v)) {
-                result[k] = (k === 'amount' || k === 'tradable') ? v : String(v);
+                result[k] = (k === 'amount' || k === 'tradable') ? parseInt(v, 10) : String(v);
             }
         }
         return result;
