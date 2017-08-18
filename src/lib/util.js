@@ -213,7 +213,7 @@ var Util = {
         var result = {};
         for (var k in obj) {
             var v = obj[k];
-            if (v !== "" && v !== undefined) {
+            if (Util.notEmpty(v)) {
                 result[k] = v;
             }
         }
