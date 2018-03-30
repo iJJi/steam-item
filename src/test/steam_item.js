@@ -128,6 +128,41 @@ describe("Steam Item", function() {
                 }
             ]
         }))).to.equal('2017-04-19T23:00:00.000Z');
+
+        expect(SteamItem.tradeHold(Object.assign({}, ITEM, {
+            tradable: 0,
+            owner_descriptions: [
+                {
+                    "type": "html",
+                    "value": "Tradable After Apr 07, 2018 (7:00:00) GMT",
+                    "color": "ff4040"
+                }
+            ]
+        }))).to.equal('2018-04-07T07:00:00.000Z');
+
+        expect(SteamItem.tradeHold(Object.assign({}, ITEM, {
+            tradable: 0,
+            owner_descriptions: [
+                {
+                    "type": "html",
+                    "value": "Tradable After XXXXX",
+                    "color": "ff4040"
+                }
+            ]
+        })).substring(0,10)).to.equal((new Date(Date.now() + (7*24*60*60*1000))).toISOString().substring(0,10));
+
+        expect(() => {
+            SteamItem.tradeHold(Object.assign({}, ITEM, {
+                tradable: 0,
+                owner_descriptions: [
+                    {
+                        "type": "html",
+                        "value": "Tradable After-",
+                        "color": "ff4040"
+                    }
+                ]
+            }))
+        }).to.throw("Failed to parse: Tradable After-");
     });
 
     it("Inspect Url", function() {

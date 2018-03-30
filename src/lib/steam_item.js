@@ -45,12 +45,27 @@ function tradeHold(item) {
             for (var i = 0; i < ownerDescriptions.length; i++) {
                 var desc = ownerDescriptions[i].value;
                 if (Util.isString(desc)) {
-                    let match = desc.match(/^Tradable after: \[date\](\d+)\[\/date\]\.$/);
+                    let match = desc.match(/^Tradable after: \[date\](\d+)\[\/date\]\.$/i);
                     if (Util.notNull(match)) {
-                        var timestamp = Util.parseInt(match[1]);
-                        if (timestamp > 0) {
-                            return Util.epochToIsoString(timestamp)
+                        var epoch = Util.parseInt(match[1]);
+                        if (epoch > 0) {
+                            return Util.epochToIsoString(epoch);
                         }
+                    }
+
+                    match = desc.match(/^Tradable After (.*)$/i);
+                    if (Util.notNull(match)) {
+                        var timestamp = Date.parse(match[1].replace(/[\(\)]/g, ''));
+                        if (isNaN(timestamp) || timestamp <= 0) {
+                            return Util.now(7*Util.DAY); // fallback is one week
+                        }
+
+                        return new Date(timestamp).toISOString();
+                    }
+
+                    match = desc.match(/^Tradable After/i);
+                    if (Util.notNull(match)) {
+                        throw new Error("Failed to parse: " + desc)
                     }
                 }
             }
