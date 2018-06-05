@@ -172,10 +172,11 @@ module.exports = {
             return Util.notEmpty(t);
         }).slice(0, LISTING_TAG_COUNT_MAX);
 
-        description = description.filter(function(x) { return Util.notEmpty(x); }).join("\n\n");
+        // Make sure that no line is longer than 1k and that entire length is less than 4k
+        description = description.filter(function(x) { return Util.notEmpty(x); }).map(s => s.slice(0,1023)).join("\n\n");
         return {
             name: item.market_hash_name || item.market_name || item.name,
-            description: Util.notEmpty(description) ? description : '.',
+            description: Util.notEmpty(description) ? description.slice(0,4095) : '.',
             tags: tags,
             steam_properties: Util.cleanEmptyValues(steamProperties)
         };
