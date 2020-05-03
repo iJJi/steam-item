@@ -6,7 +6,7 @@ var ObjectAssign = require('./object_assign.js');
 var ITEM_PROPS = [
     'id', 'appid', 'contextid', 'amount', 'name',
     'type', 'tradable', 'classid', 'icon_url', 'market_hash_name',
-    'original_id'
+    'original_id', 'est_usd'
 ];
 
 var LISTING_TAG_COUNT_MAX = 32;
