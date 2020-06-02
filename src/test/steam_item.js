@@ -118,27 +118,15 @@ describe("Steam Item", function() {
     it("Trade Hold", function() {
         expect(SteamItem.tradeHold(ITEM)).to.be.null;
 
+        // DOTA 2
         expect(SteamItem.tradeHold(Object.assign({}, ITEM, {
             tradable: 0,
             owner_descriptions: [
                 {
-                    "type": "",
-                    "value": "Tradable after: [date]1492642800[/date].",
-                    "color": "FF0000"
+                    "value": "\nOn Trade Cooldown Until: Tue Jun  9 15:03:54 2020"
                 }
             ]
-        }))).to.equal('2017-04-19T23:00:00.000Z');
-
-        expect(SteamItem.tradeHold(Object.assign({}, ITEM, {
-            tradable: 0,
-            owner_descriptions: [
-                {
-                    "type": "html",
-                    "value": "Tradable After Apr 07, 2018 (7:00:00) GMT",
-                    "color": "ff4040"
-                }
-            ]
-        }))).to.equal('2018-04-07T07:00:00.000Z');
+        }))).to.equal('2020-06-09T22:03:54.000Z');
 
         expect(SteamItem.tradeHold(Object.assign({}, ITEM, {
             tradable: 0,

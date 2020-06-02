@@ -45,7 +45,18 @@ function tradeHold(item) {
             for (var i = 0; i < ownerDescriptions.length; i++) {
                 var desc = ownerDescriptions[i].value;
                 if (Util.isString(desc)) {
-                    let match = desc.match(/^Tradable after: \[date\](\d+)\[\/date\]\.$/i);
+                    desc = desc.trim();
+                    var match = desc.match(/^On Trade Cooldown Until: (.*)$/i);
+                    if (Util.notNull(match)) {
+                        var timestamp = Date.parse(match[1]);
+                        if (isNaN(timestamp) || timestamp <= 0) {
+                            return Util.now(7*Util.DAY); // fallback is one week
+                        }
+
+                        return new Date(timestamp).toISOString();
+                    }
+
+                    match = desc.match(/^Tradable after: \[date\](\d+)\[\/date\]\.$/i);
                     if (Util.notNull(match)) {
                         var epoch = Util.parseInt(match[1]);
                         if (epoch > 0) {
