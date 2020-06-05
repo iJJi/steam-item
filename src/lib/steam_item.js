@@ -1,7 +1,6 @@
 'use strict';
 
 var Util = require('./util.js');
-var ObjectAssign = require('./object_assign.js');
 
 var ITEM_PROPS = [
     'id', 'appid', 'contextid', 'amount', 'name',
@@ -126,7 +125,7 @@ function canonicalTag(s) {
 
 module.exports = {
     listing: function (item, steamProperties = null, steamId = null) {
-        steamProperties = ObjectAssign({owner_steamid: steamId}, steamProperties, itemProps(item));
+        steamProperties = Object.assign({owner_steamid: steamId}, steamProperties, itemProps(item));
 
         // Description
         var description = [];
