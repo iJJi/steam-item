@@ -7,7 +7,7 @@
     "test": "ENVIRONMENT=mocha mocha src/test --recursive"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^7.1.2"
+    "chai": "^4.3.4",
+    "mocha": "^8.4.0"
   }
 }
