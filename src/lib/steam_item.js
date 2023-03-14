@@ -164,7 +164,7 @@ module.exports = {
         // Deal with tags
         let tags = [];
         if (Util.isArray(item.tags)) {
-            tags = item.tags.map(function(t) { return t.category_name ? t.category_name+": "+t.name : t.name; });
+            item.tags.map(function(t) { if (t.localized_category_name) tags.push(t.localized_category_name+": "+t.localized_tag_name); });
             description.push(tags.join(', '));
         }
 
