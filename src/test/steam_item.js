@@ -66,26 +66,26 @@ const ITEM = {
     }],
     owner_descriptions: "",
     tags: [{
-        internal_name: "CSGO_Type_WeaponCase",
-        name: "Container",
         category: "Type",
-        category_name: "Type"
+        internal_name: "CSGO_Type_WeaponCase",
+        localized_category_name: "Type",
+        localized_tag_name: "Container"
     }, {
-        internal_name: "set_community_12",
-        name: "The Chroma 3 Collection",
         category: "ItemSet",
-        category_name: "Collection"
+        internal_name: "set_community_12",
+        localized_category_name: "Collection",
+        localized_tag_name: "The Chroma 3 Collection"
     }, {
-        internal_name: "normal",
-        name: "Normal",
         category: "Quality",
-        category_name: "Category"
+        internal_name: "normal",
+        localized_category_name: "Category",
+        localized_tag_name: "Normal"
     }, {
-        internal_name: "Rarity_Common",
-        name: "Base Grade",
         category: "Rarity",
-        color: "b0c3d9",
-        category_name: "Quality"
+        internal_name: "Rarity_Common",
+        localized_category_name: "Quality",
+        localized_tag_name: "Base Grade",
+        color: "b0c3d9"
     }],
     pos: 1,
     appid: 730,
