@@ -1,6 +1,6 @@
 {
   "name": "steam-item",
-  "version": "0.2.12",
+  "version": "0.2.18",
   "private": true,
   "main": "./src/lib/steam_item.js",
   "scripts": {

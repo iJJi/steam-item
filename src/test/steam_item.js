@@ -20,7 +20,7 @@ const ITEM = {
     name_color: "D2D2D2",
     background_color: "",
     type: "Base Grade Container",
-    tradable: 1,
+    tradable: true,
     marketable: 1,
     commodity: 1,
     market_tradable_restriction: "7",
@@ -105,7 +105,7 @@ describe("Steam Item", function() {
             name: "Chroma 3 Case",
             market_hash_name: "Chroma 3 Case",
             type: "Base Grade Container",
-            tradable: 1,
+            tradable: true,
             icon_url: "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXQ9QVcJY8gulReQ0DFSua4xJ2DAgs7KRFav4WpKhVn1r2aJGQX7ou0kdjbz6L1ZL-ClTsG6sEpjLvE8Y2i21Lm_kdpZG-lJ4KUbEZgNkYNvyBp",
             inspect_url: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175"
         });
@@ -120,7 +120,7 @@ describe("Steam Item", function() {
 
         // DOTA 2
         expect(SteamItem.tradeHold(Object.assign({}, ITEM, {
-            tradable: 0,
+            tradable: false,
             owner_descriptions: [
                 {
                     "value": "\nOn Trade Cooldown Until: Tue Jun  9 15:03:54 2020"
@@ -129,7 +129,7 @@ describe("Steam Item", function() {
         }))).to.equal('2020-06-09T22:03:54.000Z');
 
         expect(SteamItem.tradeHold(Object.assign({}, ITEM, {
-            tradable: 0,
+            tradable: false,
             owner_descriptions: [
                 {
                     "type": "html",
@@ -141,7 +141,7 @@ describe("Steam Item", function() {
 
         expect(() => {
             SteamItem.tradeHold(Object.assign({}, ITEM, {
-                tradable: 0,
+                tradable: false,
                 owner_descriptions: [
                     {
                         "type": "html",
@@ -216,7 +216,7 @@ describe("Steam Item", function() {
                 name: "Chroma 3 Case",
                 market_hash_name: "Chroma 3 Case",
                 type: "Base Grade Container",
-                tradable: 1,
+                tradable: true,
                 icon_url: "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXQ9QVcJY8gulReQ0DFSua4xJ2DAgs7KRFav4WpKhVn1r2aJGQX7ou0kdjbz6L1ZL-ClTsG6sEpjLvE8Y2i21Lm_kdpZG-lJ4KUbEZgNkYNvyBp",
                 inspect_url: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175"
             }
@@ -224,7 +224,7 @@ describe("Steam Item", function() {
 
         // Test held_until
         expect(SteamItem.listing(Object.assign({}, ITEM, {
-            tradable: 0,
+            tradable: false,
             owner_descriptions: [
                 {
                     "type": "",
@@ -253,7 +253,7 @@ describe("Steam Item", function() {
                 name: "Chroma 3 Case",
                 market_hash_name: "Chroma 3 Case",
                 type: "Base Grade Container",
-                tradable: 0,
+                tradable: false,
                 held_until: "2017-04-19T23:00:00.000Z",
                 icon_url: "-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXQ9QVcJY8gulReQ0DFSua4xJ2DAgs7KRFav4WpKhVn1r2aJGQX7ou0kdjbz6L1ZL-ClTsG6sEpjLvE8Y2i21Lm_kdpZG-lJ4KUbEZgNkYNvyBp",
                 inspect_url: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175"
@@ -262,7 +262,7 @@ describe("Steam Item", function() {
 
         // Test empty string for icon_url
         expect(SteamItem.listing(Object.assign({}, ITEM, {
-            tradable: 0,
+            tradable: false,
             icon_url: "",
             icon_url_large: ""
         }))).to.deep.equal({
@@ -286,7 +286,7 @@ describe("Steam Item", function() {
                 name: "Chroma 3 Case",
                 market_hash_name: "Chroma 3 Case",
                 type: "Base Grade Container",
-                tradable: 0,
+                tradable: false,
                 inspect_url: "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S%owner_steamid%A%assetid%D633534240071254175"
             }
         });

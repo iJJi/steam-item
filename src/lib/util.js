@@ -44,24 +44,24 @@ var Util = {
      * Random integer from [0..upperBoundExclusive)
      * @param upperBoundExclusive
      */
-    randomInt: function(upperBoundExclusive) { 
-      return Math.floor(Math.random() * upperBoundExclusive); 
+    randomInt: function(upperBoundExclusive) {
+      return Math.floor(Math.random() * upperBoundExclusive);
     },
 
     /**
      * If n is string, parse it
      * @param n either a number or string
      */
-    parseInt: function(n) { 
-      return (typeof n == 'string') ? parseInt(n, 10) : n; 
+    parseInt: function(n) {
+      return (typeof n == 'string') ? parseInt(n, 10) : n;
     },
 
     /**
      * If n is string, parse it
      * @param n either a number or string
      */
-    parseFloat: function(n) { 
-      return (typeof n == 'string') ? parseFloat(n) : n; 
+    parseFloat: function(n) {
+      return (typeof n == 'string') ? parseFloat(n) : n;
     },
 
     /**
@@ -80,8 +80,8 @@ var Util = {
      * @param x value to test
      * @return {boolean}
      */
-    notNull: function(x) { 
-      return ((typeof x !== 'undefined') && (x !== null)); 
+    notNull: function(x) {
+      return ((typeof x !== 'undefined') && (x !== null));
     },
 
     /**
@@ -89,8 +89,8 @@ var Util = {
      * @param x value to test
      * @return {boolean}
      */
-    notEmpty: function(x) { 
-      return ((typeof x !== 'undefined') && (x !== null) && (x !== '')); 
+    notEmpty: function(x) {
+      return ((typeof x !== 'undefined') && (x !== null) && (x !== ''));
     },
 
     /**
@@ -98,8 +98,8 @@ var Util = {
      * @param x value to test
      * @return {boolean}
      */
-    isNull: function(x) { 
-      return ((typeof x === 'undefined') || (x === null)); 
+    isNull: function(x) {
+      return ((typeof x === 'undefined') || (x === null));
     },
 
     /**
@@ -107,8 +107,8 @@ var Util = {
      * @param x value to test
      * @return {boolean}
      */
-    isTrue: function(x) { 
-      return ((typeof x !== 'undefined') && (x)); 
+    isTrue: function(x) {
+      return ((typeof x !== 'undefined') && (x));
     },
 
     /**
@@ -116,8 +116,8 @@ var Util = {
      * @param x value to test
      * @return {boolean}
      */
-    isFalse: function(x) { 
-      return !((typeof x === 'undefined') || (x)); 
+    isFalse: function(x) {
+      return !((typeof x === 'undefined') || (x));
     },
 
     /**
@@ -125,8 +125,8 @@ var Util = {
      * @param x value to test
      * @return {boolean}
      */
-    isArray: function(x) { 
-      return ((typeof x !== 'undefined') && Array.isArray(x)); 
+    isArray: function(x) {
+      return ((typeof x !== 'undefined') && Array.isArray(x));
     },
 
     /**
@@ -134,8 +134,8 @@ var Util = {
      * @param x value to test
      * @return {boolean}
      */
-    isString: function(x) { 
-      return (typeof x === 'string'); 
+    isString: function(x) {
+      return (typeof x === 'string');
     },
 
     /**
@@ -143,8 +143,8 @@ var Util = {
      * @param m object
      * @param k property to test
      */
-    hasKey: function(m, k) { 
-      return ((typeof m !== 'undefined') && (m !== null) && (typeof m !== 'object') && (k in m)); 
+    hasKey: function(m, k) {
+      return ((typeof m !== 'undefined') && (m !== null) && (typeof m !== 'object') && (k in m));
     },
 
     /**
@@ -199,7 +199,13 @@ var Util = {
             var k = keys[i];
             var v = map[k];
             if (Util.notEmpty(v)) {
-                result[k] = (k === 'amount' || k === 'tradable') ? parseInt(v, 10) : String(v);
+                if (typeof v == "boolean") {
+                    result[k] = v;
+                } else if (k === 'amount') {
+                    result[k] = parseInt(v, 10);
+                } else {
+                    result[k] = String(v);
+                }
             }
         }
         return result;
