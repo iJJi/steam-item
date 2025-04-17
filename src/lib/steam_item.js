@@ -5,7 +5,7 @@ var Util = require('./util.js');
 var ITEM_PROPS = [
     'id', 'appid', 'contextid', 'amount', 'name',
     'type', 'tradable', 'classid', 'icon_url', 'market_hash_name',
-    'original_id', 'est_usd'
+    'original_id', 'est_usd', 'market_tradable_restriction'
 ];
 
 var LISTING_TAG_COUNT_MAX = 32;
@@ -100,6 +100,7 @@ function itemProps(item, steamId = null) {
         props.inspect_url = inspect_url;
     }
 
+    // @deprecated doesn't happen anymore
     var trade_hold = tradeHold(item);
     if (Util.notNull(trade_hold)) {
         props.held_until = trade_hold;
@@ -113,6 +114,11 @@ function itemProps(item, steamId = null) {
     var float = item.float;
     if (Util.notNull(float)) {
         props.float = float;
+    }
+
+    var market_tradable_restriction = item.market_tradable_restriction;
+    if (Util.notNull(market_tradable_restriction)) {
+        props.market_tradable_restriction = market_tradable_restriction;
     }
 
     return Util.cleanEmptyValues(props);
