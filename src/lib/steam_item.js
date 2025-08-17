@@ -5,7 +5,8 @@ var Util = require('./util.js');
 var ITEM_PROPS = [
     'id', 'appid', 'contextid', 'amount', 'name',
     'type', 'tradable', 'classid', 'icon_url', 'market_hash_name',
-    'original_id', 'est_usd', 'market_tradable_restriction'
+    'original_id', 'est_usd', 'market_tradable_restriction',
+    'assetid', 'new_assetid', 'new_contextid'
 ];
 
 var LISTING_TAG_COUNT_MAX = 32;
